@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Data/" />
+  <Folder Name="/Entities/">
+    <Project Path="KataCheckout.Entities/KataCheckout.Entities.csproj" Id="a0023c46-70a4-4ff3-9061-155d4b47a73f" />
+  </Folder>
+  <Folder Name="/Logic/" />
+</Solution>
