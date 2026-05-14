@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KataCheckout.Entities
+namespace KataCheckout.Entities.Products
 {
     /// <summary>
     /// The product.
     /// </summary>
-    public class Product
+    public abstract class BaseProduct
     {
         /// <summary>
         /// Gets or sets the sku.
