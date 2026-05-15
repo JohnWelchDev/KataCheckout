@@ -1,4 +1,5 @@
-﻿using KataCheckout.Entities.Offers;
+﻿using KataCheckout.Entities.Cart;
+using KataCheckout.Entities.Offers;
 using KataCheckout.Entities.Products;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,58 @@ namespace KataCheckout.Logic.Utilities
             }
 
             return applicableOffers;
+        }
+
+        public static bool OfferApplies(Dictionary<string, CartLineItem> dicUniqueCartItems, SpecialOffer offer)
+        {
+            bool applies = false;
+
+            // check offer passed in.
+            if (dicUniqueCartItems != null && offer != null)
+            {
+                
+            }
+
+            return applies;
+        }
+
+        public static bool EvaluateCondition(OfferCondition condition, Dictionary<string, CartLineItem> cartLines)
+        {
+            bool match = false;
+
+            // check unit conditions set.
+            if (condition.UnitConditions != null && condition.UnitConditions.Count > 0)
+            {
+                // check if all units must evaluate true in order for condition to pass.
+                bool allRequired = condition.RelationCode == "&&";
+
+                // loop through the condition units.
+                foreach (ProductConditionUnit unit in condition.UnitConditions)
+                {
+                    // check the sku is set.
+                    if (!string.IsNullOrEmpty(unit.SKU))
+                    {
+                        // check cart line exists for product.
+                        if (cartLines.ContainsKey(unit.SKU))
+                        {
+
+                        }
+                        else if (allRequired)
+                        {
+                            // no cart line found for product.
+                            break;
+                        }
+                    }
+                    else if (allRequired)
+                    {
+                        // unable to match condition as can't identify product.
+                        // all required to pass so evaluate condition fails.
+                        break;
+                    }
+                }
+            }
+
+            return match;
         }
     }
 }

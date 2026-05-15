@@ -1,6 +1,7 @@
 ﻿using KataCheckout.Entities;
 using KataCheckout.Entities.Cart;
 using KataCheckout.Entities.Offers;
+using KataCheckout.Entities.Products;
 using KataCheckout.Logic.Utilities;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,10 @@ namespace KataCheckout.Logic
             }
 
             return response;
+        }
+
+        public void ApplySpecialOffers(IEnumerable<BaseProduct> products, IEnumerable<SpecialOffer> specialOffers)
+        {
         }
     }
 }
