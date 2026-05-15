@@ -35,9 +35,10 @@ namespace KataCheckout.Entities.Tests.OfferTests.TestData
         {
             SpecialOffer offer = this.GenerateSingleLevelOffer(skus);
 
+            // work out unique skus for expected results.
             HashSet<string> uniqueSkus = new HashSet<string>();
 
-            foreach(string sku in skus)
+            foreach (string sku in skus)
             {
                 uniqueSkus.Add(sku);
             }
@@ -66,11 +67,11 @@ namespace KataCheckout.Entities.Tests.OfferTests.TestData
                 conditionUnit.Operator = OperatorCodes.Equals;
                 conditionUnit.NumUnits = 2;
 
-                condition.UnitConditions.Add(conditionUnit);
+                offer.Condition.UnitConditions.Add(conditionUnit);
             }
 
             // add to offer.
-            offer.Conditions.Add(condition);
+            //offer.Conditions.Add(condition);
 
             return offer;
         }

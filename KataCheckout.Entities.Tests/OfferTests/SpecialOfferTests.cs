@@ -15,6 +15,7 @@ namespace KataCheckout.Entities.Tests.OfferTests
     [TestFixture]
     public class SpecialOfferTests
     {
+        [TestCaseSource(typeof(SpecialOfferMultiLevelExtractSkusTestData))]
         [TestCaseSource(typeof(SpecialOfferExtractSkusTestData))]
         public void ExtractsSkusCorrectly(SpecialOffer specialOffer, IEnumerable<string> expectedResults)
         {

@@ -16,13 +16,14 @@ namespace KataCheckout.Entities.Offers
         /// </summary>
         public SpecialOffer()
         {
-            this.Conditions = new List<OfferCondition>();
+            //this.Conditions = new List<OfferCondition>();
+            this.Condition = new OfferCondition();
         }
 
         /// <summary>
-        /// Gets or sets the conditions to be met for the offer to apply.
+        /// Gets or sets the condition to be met for the offer to apply.
         /// </summary>
-        public List<OfferCondition> Conditions { get; init; }
+        public OfferCondition Condition { get; init; }
 
         /// <summary>
         /// Extracts product skus.
@@ -32,6 +33,7 @@ namespace KataCheckout.Entities.Offers
         {
             HashSet<string> results = new HashSet<string>();
 
+            /*
             // check conditions populated.
             if (this.Conditions != null && this.Conditions.Count > 0)
             {
@@ -50,6 +52,20 @@ namespace KataCheckout.Entities.Offers
                             results.Add(sku);
                         }
                     }
+                }
+            }
+            */
+
+            // get skus from condition.
+            IEnumerable<string> conditionSkus = this.Condition.ExtractSkus();
+
+            // check skus returned.
+            if (conditionSkus != null)
+            {
+                // loop through returned skus.
+                foreach (string sku in conditionSkus)
+                {
+                    results.Add(sku);
                 }
             }
 
