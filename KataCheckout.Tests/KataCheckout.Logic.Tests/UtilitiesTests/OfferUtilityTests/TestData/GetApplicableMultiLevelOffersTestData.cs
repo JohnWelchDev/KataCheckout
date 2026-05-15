@@ -69,7 +69,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
                     new SkuNest { SKUs = ["B"], ChildLevels = [new SkuNest { SKUs = ["A", "C"] }] },
                     new SkuNest { SKUs = ["B"], ChildLevels = [new SkuNest { SKUs = ["A", "C"] }, new SkuNest { ChildLevels = [new SkuNest { SKUs = ["D"] }] }] },
                 ],
-                [0, 1, 2, 3],
+                [],
                 "Multi Level Product Offers - no matches");
         }
     }

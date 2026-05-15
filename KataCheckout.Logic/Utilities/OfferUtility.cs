@@ -33,11 +33,12 @@ namespace KataCheckout.Logic.Utilities
                     // loop through products.
                     foreach (BaseProduct product in products)
                     {
+                        // track whether product has been found in the offer.
+                        bool found = false;
+
                         // check sku is set.
                         if (!string.IsNullOrEmpty(product.SKU))
                         {
-                            bool found = false;
-
                             // loop through sku list.
                             foreach(string sku in skus)
                             {
@@ -56,6 +57,10 @@ namespace KataCheckout.Logic.Utilities
                             {
                                 // add offer to applicable list.
                                 applicableOffers.Add(offer);
+
+                                // stop searching products, one is enough to make the
+                                // offer potentially a match for the whole checkout.
+                                break;
                             }
                         }
                     }
