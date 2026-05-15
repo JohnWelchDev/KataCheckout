@@ -3,3 +3,7 @@ KataCheckout.Entities/bin/
 KataCheckout.Entities/obj/
 KataCheckout.Interfaces/obj/
 KataCheckout.Logic/obj/
+KataCheckout.Entities.Tests/bin/
+KataCheckout.Entities.Tests/obj/
+KataCheckout.Interfaces/bin/
+KataCheckout.Logic/bin/

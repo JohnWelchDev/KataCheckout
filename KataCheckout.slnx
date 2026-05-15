@@ -3,5 +3,13 @@
   <Folder Name="/Entities/">
     <Project Path="KataCheckout.Entities/KataCheckout.Entities.csproj" Id="a0023c46-70a4-4ff3-9061-155d4b47a73f" />
   </Folder>
-  <Folder Name="/Logic/" />
+  <Folder Name="/Interfaces/">
+    <Project Path="KataCheckout.Interfaces/KataCheckout.Interfaces.csproj" Id="23bf1812-11e1-4dd0-8a6e-f8d80f62fa1e" />
+  </Folder>
+  <Folder Name="/Logic/">
+    <Project Path="KataCheckout.Logic/KataCheckout.Logic.csproj" Id="b2c0cc0f-0516-409a-be54-7525c4ecf6da" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="KataCheckout.Entities.Tests/KataCheckout.Entities.Tests.csproj" Id="c40daaf7-a2de-492a-a7a2-d2649e846093" />
+  </Folder>
 </Solution>
