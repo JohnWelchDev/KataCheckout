@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\KataCheckout.Entities\KataCheckout.Entities.csproj" />
     <ProjectReference Include="..\..\KataCheckout.Logic\KataCheckout.Logic.csproj" />
+    <ProjectReference Include="..\KataCheckout.Tests.Common\KataCheckout.Tests.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

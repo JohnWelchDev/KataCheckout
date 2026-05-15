@@ -21,6 +21,11 @@ namespace KataCheckout.Entities.Offers
         }
 
         /// <summary>
+        /// Gets or sets the special offer identifier.
+        /// </summary>
+        public int SpecialOfferID { get; set; }
+
+        /// <summary>
         /// Gets or sets the condition to be met for the offer to apply.
         /// </summary>
         public OfferCondition Condition { get; init; }
@@ -32,29 +37,6 @@ namespace KataCheckout.Entities.Offers
         public IEnumerable<string> ExtractSkus()
         {
             HashSet<string> results = new HashSet<string>();
-
-            /*
-            // check conditions populated.
-            if (this.Conditions != null && this.Conditions.Count > 0)
-            {
-                // loop through conditions.
-                foreach (OfferCondition condition in this.Conditions)
-                {
-                    // get skus from condition.
-                    IEnumerable<string> conditionSkus = condition.ExtractSkus();
-
-                    // check skus returned.
-                    if (conditionSkus != null)
-                    {
-                        // loop through returned skus.
-                        foreach (string sku in conditionSkus)
-                        {
-                            results.Add(sku);
-                        }
-                    }
-                }
-            }
-            */
 
             // get skus from condition.
             IEnumerable<string> conditionSkus = this.Condition.ExtractSkus();

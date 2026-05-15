@@ -1,4 +1,6 @@
 ﻿using KataCheckout.Entities.Offers;
+using KataCheckout.Entities.Products;
+using KataCheckout.Tests.Common.Products;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -55,37 +57,9 @@ namespace KataCheckout.Entities.Tests.OfferTests.TestData
             SpecialOffer specialOffer = new SpecialOffer();
 
             // addd skus to condition.
-            this.FillCondition(specialOffer.Condition, skuNest);
+            skuNest.FillCondition(specialOffer.Condition);
 
             return specialOffer;
-        }
-
-        /// <summary>
-        /// Fill condition data.
-        /// </summary>
-        /// <param name="condition">The condition.</param>
-        /// <param name="skuNest">The sku tree.</param>
-        private void FillCondition(OfferCondition condition, SkuNest skuNest)
-        {
-            skuNest.SKUs.ForEach(x =>
-            {
-                condition.UnitConditions.Add(new ProductConditionUnit { SKU = x, Operator = OperatorCodes.Equals, NumUnits = 2 });
-            });
-
-            // check child levels present.
-            if (skuNest.ChildLevels != null && skuNest.ChildLevels.Count > 0)
-            {
-                foreach (SkuNest childLevel in skuNest.ChildLevels)
-                {
-                    OfferCondition childCondition = new OfferCondition();
-                    
-                    // populate the child condition.
-                    this.FillCondition(childCondition, childLevel);
-
-                    // add child condition to parent.
-                    condition.ChildOfferConditions.Add(childCondition);
-                }
-            }
         }
     }
 }

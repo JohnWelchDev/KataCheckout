@@ -12,5 +12,6 @@
   <Folder Name="/Tests/">
     <Project Path="KataCheckout.Tests/KataCheckout.Entities.Tests/KataCheckout.Entities.Tests.csproj" Id="c40daaf7-a2de-492a-a7a2-d2649e846093" />
     <Project Path="KataCheckout.Tests/KataCheckout.Logic.Tests/KataCheckout.Logic.Tests.csproj" Id="26686f3e-4a80-478b-8f20-c425a55edd4e" />
+    <Project Path="KataCheckout.Tests/KataCheckout.Tests.Common/KataCheckout.Tests.Common.csproj" Id="d460c044-fbc6-46ab-af42-35b4935d8be4" />
   </Folder>
 </Solution>
