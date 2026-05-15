@@ -22,7 +22,7 @@ namespace KataCheckout.Logic.Utilities
             Dictionary<string, CartLineItem> dicLineItems = new Dictionary<string, CartLineItem>();
 
             // loop through items.
-            foreach (CartLineItem item in lineItems)
+            foreach (CartLineItem item in lineItems)    
             {
                 // check the item has a product and a valid sku.
                 if (item.Product == null || string.IsNullOrWhiteSpace(item.Product.SKU))

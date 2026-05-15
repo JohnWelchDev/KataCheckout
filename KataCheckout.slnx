@@ -10,6 +10,7 @@
     <Project Path="KataCheckout.Logic/KataCheckout.Logic.csproj" Id="b2c0cc0f-0516-409a-be54-7525c4ecf6da" />
   </Folder>
   <Folder Name="/Tests/">
-    <Project Path="KataCheckout.Entities.Tests/KataCheckout.Entities.Tests.csproj" Id="c40daaf7-a2de-492a-a7a2-d2649e846093" />
+    <Project Path="KataCheckout.Tests/KataCheckout.Entities.Tests/KataCheckout.Entities.Tests.csproj" Id="c40daaf7-a2de-492a-a7a2-d2649e846093" />
+    <Project Path="KataCheckout.Tests/KataCheckout.Logic.Tests/KataCheckout.Logic.Tests.csproj" Id="26686f3e-4a80-478b-8f20-c425a55edd4e" />
   </Folder>
 </Solution>

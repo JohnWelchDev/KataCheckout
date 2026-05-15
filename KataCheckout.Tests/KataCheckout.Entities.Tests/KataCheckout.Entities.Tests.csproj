@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KataCheckout.Entities\KataCheckout.Entities.csproj" />
+    <ProjectReference Include="..\..\KataCheckout.Entities\KataCheckout.Entities.csproj" />
   </ItemGroup>
 
 </Project>
