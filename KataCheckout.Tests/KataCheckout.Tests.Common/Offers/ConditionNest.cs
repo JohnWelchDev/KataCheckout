@@ -26,6 +26,11 @@ namespace KataCheckout.Tests.Common.Offers
         public bool Invert { get; set; }
 
         /// <summary>
+        /// Gets or sets the relation code.
+        /// </summary>
+        public string RelationCode { get; set; }
+
+        /// <summary>
         /// Gets or sets the child nests.
         /// </summary>
         public List<ConditionNest> ChildNests { get; init; }

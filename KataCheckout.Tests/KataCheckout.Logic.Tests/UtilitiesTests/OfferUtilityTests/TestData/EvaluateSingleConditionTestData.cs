@@ -1,19 +1,14 @@
 ﻿using KataCheckout.Entities.Cart;
 using KataCheckout.Entities.Offers;
-using KataCheckout.Entities.Products;
 using KataCheckout.Tests.Common.Offers;
-using KataCheckout.Tests.Common.Products;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
 {
     /// <summary>
     /// The evaluate condition test data.
     /// </summary>
-    public class EvaluateConditionTestData : BaseEvaluateConditionTestData, IEnumerable
+    public class EvaluateSingleConditionTestData : BaseEvaluateConditionTestData, IEnumerable
     {
         /// <summary>
         /// Gets the enumerator.
@@ -46,11 +41,23 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
             bool fiveResult = false;
             string fiveName = "One item - greater than fail";
 
+            OfferCondition sixCondition = this.GetCondition(new ConditionNest { Units = [("A", ">=", 2)], Invert = false });
+            Dictionary<string, CartLineItem> sixLineItems = this.GetCartLines([("A", 3)]);
+            bool sixResult = true;
+            string sixName = "One item - greater than or equal pass";
+
+            OfferCondition sevenCondition = this.GetCondition(new ConditionNest { Units = [("A", ">=", 2)], Invert = false });
+            Dictionary<string, CartLineItem> sevenLineItems = this.GetCartLines([("A", 1)]);
+            bool sevenResult = false;
+            string sevenName = "One item - greater than or equal fail";
+
             yield return new TestCaseData(oneCondition, oneLineItems, oneResult).SetName(oneName);
             yield return new TestCaseData(twoCondition, twoLineItems, twoResult).SetName(twoName);
             yield return new TestCaseData(threeCondition, threeLineItems, threeResult).SetName(threeName);
             yield return new TestCaseData(fourCondition, fourLineItems, fourResult).SetName(fourName);
             yield return new TestCaseData(fiveCondition, fiveLineItems, fiveResult).SetName(fiveName);
+            yield return new TestCaseData(sixCondition, sixLineItems, sixResult).SetName(sixName);
+            yield return new TestCaseData(sevenCondition, sevenLineItems, sevenResult).SetName(sevenName);
         }
     }
 }
