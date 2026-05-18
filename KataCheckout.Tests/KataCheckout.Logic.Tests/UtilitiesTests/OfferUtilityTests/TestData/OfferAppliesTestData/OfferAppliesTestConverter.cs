@@ -72,6 +72,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.Off
                         // fill conditions.
                         offer.Condition.UnitConditions.AddRange(condition.UnitConditions);
                         offer.Condition.ChildOfferConditions.AddRange(condition.ChildOfferConditions);
+                        offer.Condition.RelationCode = condition.RelationCode;
                         offer.Condition.InvertEvaluation = condition.InvertEvaluation;
 
                         yield return new TestCaseData(cartLineItems, offer, expectedResult).SetName($"Offer - {data.TestName}");

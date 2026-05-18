@@ -27,7 +27,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.Eva
             OfferCondition twoCondition = this.GetCondition(new ConditionNest { Units = [("A", "=", 2), ("B", "=", 3)], RelationCode = RelationCodes.AND, Invert = false });
             OfferCondition twoChildOne = this.GetCondition(new ConditionNest { Units = [("C", ">", 1), ("D", "<=", 3)], RelationCode = RelationCodes.OR, Invert = false });
             twoCondition.ChildOfferConditions.Add(twoChildOne);
-            Dictionary<string, CartLineItem> twoLineItems = this.GetCartLines([("B", 3), ("A", 2), ("C", 2), ("D", 3)]);
+            Dictionary<string, CartLineItem> twoLineItems = this.GetCartLines([("B", 3), ("A", 1), ("C", 2), ("D", 2)]);
             bool twoResult = false;
             string twoName = "Two conditions one child group - units pass child group fails";
 
@@ -50,7 +50,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.Eva
             OfferCondition fiveChildOne = this.GetCondition(new ConditionNest { Units = [("A", "=", 2), ("B", "=", 3)], RelationCode = RelationCodes.AND, Invert = false });
             OfferCondition fiveChildTwo = this.GetCondition(new ConditionNest { Units = [("C", ">", 1), ("D", "<=", 3)], RelationCode = RelationCodes.OR, Invert = false });
             fiveCondition.ChildOfferConditions.AddRange([fiveChildOne, fiveChildTwo]);
-            Dictionary<string, CartLineItem> fiveLineItems = this.GetCartLines([("B", 3), ("A", 2), ("C", 2), ("D", 4)]);
+            Dictionary<string, CartLineItem> fiveLineItems = this.GetCartLines([("B", 3), ("A", 2), ("C", 1), ("D", 4)]);
             bool fiveResult = false;
             string fiveName = "No conditions two child groups - AND - one group pass one group fail";
 

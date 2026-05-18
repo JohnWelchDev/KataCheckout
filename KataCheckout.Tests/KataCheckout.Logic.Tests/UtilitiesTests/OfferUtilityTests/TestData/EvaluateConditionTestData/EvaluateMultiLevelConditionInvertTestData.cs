@@ -48,7 +48,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.Eva
             OfferCondition fiveChildOne = this.GetCondition(new ConditionNest { Units = [("C", ">", 1), ("D", "<=", 3)], RelationCode = RelationCodes.OR, Invert = true });
             fiveCondition.ChildOfferConditions.Add(fiveChildOne);
             Dictionary<string, CartLineItem> fiveLineItems = this.GetCartLines([("B", 2), ("A", 3), ("C", 2), ("D", 3)]);
-            bool fiveResult = true;
+            bool fiveResult = false;
             string fiveName = "Invert child - Two conditions one child group - AND - units fail child passes";
 
             OfferCondition sixCondition = this.GetCondition(new ConditionNest { Units = [("A", "=", 2), ("B", "=", 3)], RelationCode = RelationCodes.OR, Invert = false });
@@ -58,12 +58,12 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.Eva
             bool sixResult = false;
             string sixName = "Invert child - Two conditions one child group - OR - units fail child passes";
 
-            yield return new TestCaseData(oneChildOne, oneLineItems, oneResult).SetName(oneName);
-            yield return new TestCaseData(twoChildOne, twoLineItems, twoResult).SetName(twoName);
-            yield return new TestCaseData(threeChildOne, threeLineItems, threeResult).SetName(threeName);
-            yield return new TestCaseData(fourChildOne, fourLineItems, fourResult).SetName(fourName);
-            yield return new TestCaseData(fiveChildOne, fiveLineItems, fiveResult).SetName(fiveName);
-            yield return new TestCaseData(sixChildOne, sixLineItems, sixResult).SetName(sixName);
+            yield return new TestCaseData(oneCondition, oneLineItems, oneResult).SetName(oneName);
+            yield return new TestCaseData(twoCondition, twoLineItems, twoResult).SetName(twoName);
+            yield return new TestCaseData(threeCondition, threeLineItems, threeResult).SetName(threeName);
+            yield return new TestCaseData(fourCondition, fourLineItems, fourResult).SetName(fourName);
+            yield return new TestCaseData(fiveCondition, fiveLineItems, fiveResult).SetName(fiveName);
+            yield return new TestCaseData(sixCondition, sixLineItems, sixResult).SetName(sixName);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.Eva
             string fiveName = "Two conditions - OR - 1 pass 1 fail";
 
             OfferCondition sixCondition = this.GetCondition(new ConditionNest { Units = [("A", "=", 2), ("B", "=", 3)], RelationCode = RelationCodes.OR, Invert = false });
-            Dictionary<string, CartLineItem> sixLineItems = this.GetCartLines([("B", 4), ("A", 2)]);
+            Dictionary<string, CartLineItem> sixLineItems = this.GetCartLines([("B", 4), ("A", 3)]);
             bool sixResult = false;
             string sixName = "Two conditions - OR - both fail";
 

@@ -168,9 +168,9 @@ namespace KataCheckout.Logic.Utilities
 
             // check if can continue to evaluate child conditions, scenarios being:
             // no units checked - only child conditions set
-            // all matched - still potential match
-            // only one match required and at least one found - still potential match.
-            if (pass || !unitsChecked)
+            // all passed - still potential match
+            // not all required to pass - still could be potential pass in child group.
+            if (pass || !allRequired || !unitsChecked)
             {
                 // check the child offer conditions are populated.
                 if (condition.ChildOfferConditions != null && condition.ChildOfferConditions.Count > 0)
@@ -192,7 +192,15 @@ namespace KataCheckout.Logic.Utilities
                         }
                     }
 
-                    pass &= allMatch || (!allRequired && anyMatch);
+                    // check how to incorporate child result.
+                    if (allRequired)
+                    {
+                        pass &= allMatch;
+                    }
+                    else
+                    {
+                        pass |= anyMatch;
+                    }
                 }
             }
 
