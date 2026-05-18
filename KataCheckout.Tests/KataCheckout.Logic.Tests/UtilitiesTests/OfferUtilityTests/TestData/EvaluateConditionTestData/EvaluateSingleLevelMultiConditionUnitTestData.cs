@@ -5,9 +5,9 @@ using System;
 using System.Collections;
 using System.Text;
 
-namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
+namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.EvaluateConditionTestData
 {
-    public class EvaluateMultiConditionTestData : BaseEvaluateConditionTestData, IEnumerable
+    public class EvaluateSingleLevelMultiConditionUnitTestData : BaseEvaluateConditionTestData, IEnumerable
     {
         /// <summary>
         /// Gets the enumerator.

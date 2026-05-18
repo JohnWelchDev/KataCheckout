@@ -3,6 +3,7 @@ using KataCheckout.Entities.Offers;
 using KataCheckout.Entities.Products;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace KataCheckout.Logic.Utilities
@@ -78,7 +79,16 @@ namespace KataCheckout.Logic.Utilities
             // check offer passed in.
             if (dicUniqueCartItems != null && offer != null)
             {
-                
+                // check the condition is set.
+                if (offer.Condition != null)
+                {
+                    applies = EvaluateCondition(offer.Condition, dicUniqueCartItems);
+                }
+                else
+                {
+                    // if no condition, always applies.
+                    applies = true;
+                }
             }
 
             return applies;
@@ -103,7 +113,8 @@ namespace KataCheckout.Logic.Utilities
                         // check cart line exists for product.
                         if (cartLines.ContainsKey(unit.SKU))
                         {
-                            
+                            // get the cart line item.
+                            CartLineItem cartLineItem = cartLines[unit.SKU];
                         }
                         else if (allRequired)
                         {

@@ -3,7 +3,7 @@ using KataCheckout.Entities.Offers;
 using KataCheckout.Tests.Common.Offers;
 using System.Collections;
 
-namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
+namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.EvaluateConditionTestData
 {
     /// <summary>
     /// The evaluate multi level condition utilising invert test data.

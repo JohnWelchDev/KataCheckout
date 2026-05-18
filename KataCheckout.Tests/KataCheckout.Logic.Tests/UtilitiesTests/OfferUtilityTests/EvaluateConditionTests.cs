@@ -1,6 +1,6 @@
 ﻿using KataCheckout.Entities.Cart;
 using KataCheckout.Entities.Offers;
-using KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData;
+using KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.EvaluateConditionTestData;
 using KataCheckout.Logic.Utilities;
 using System;
 using System.Collections.Generic;
@@ -15,13 +15,13 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests
     public class EvaluateConditionTests
     {
         
-        [TestCaseSource(typeof(EvaluateSingleConditionTestData))]
+        [TestCaseSource(typeof(EvaluateSingleLevelConditionTestData))]
         public void EvaluatesSingleConditionCorrectly(OfferCondition condition, Dictionary<string, CartLineItem> cartLines, bool expectedResult)
         {
             this.ExecuteTest(condition, cartLines, expectedResult);
         }
 
-        [TestCaseSource(typeof(EvaluateMultiConditionTestData))]
+        [TestCaseSource(typeof(EvaluateSingleLevelMultiConditionUnitTestData))]
         public void EvaluateMultiConditionsCorrectly(OfferCondition condition, Dictionary<string, CartLineItem> cartLines, bool expectedResult)
         {
             this.ExecuteTest(condition, cartLines, expectedResult);

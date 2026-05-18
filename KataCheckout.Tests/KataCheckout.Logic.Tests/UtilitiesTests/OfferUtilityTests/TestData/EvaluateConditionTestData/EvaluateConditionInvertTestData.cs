@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
+namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.EvaluateConditionTestData
 {
     /// <summary>
     /// The evaluate condition utilising invert test data.

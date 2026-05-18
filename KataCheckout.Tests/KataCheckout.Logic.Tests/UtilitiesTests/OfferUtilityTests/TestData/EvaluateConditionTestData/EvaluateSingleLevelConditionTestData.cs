@@ -3,12 +3,12 @@ using KataCheckout.Entities.Offers;
 using KataCheckout.Tests.Common.Offers;
 using System.Collections;
 
-namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
+namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.EvaluateConditionTestData
 {
     /// <summary>
     /// The evaluate condition test data.
     /// </summary>
-    public class EvaluateSingleConditionTestData : BaseEvaluateConditionTestData, IEnumerable
+    public class EvaluateSingleLevelConditionTestData : BaseEvaluateConditionTestData, IEnumerable
     {
         /// <summary>
         /// Gets the enumerator.

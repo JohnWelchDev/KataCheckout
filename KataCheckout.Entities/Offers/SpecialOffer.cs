@@ -31,6 +31,11 @@ namespace KataCheckout.Entities.Offers
         public OfferCondition Condition { get; init; }
 
         /// <summary>
+        /// Gets or sets the number of times an offer can apply within a single checkout (null for unlimited).
+        /// </summary>
+        public int? LimitPerCheckout { get; set; }
+
+        /// <summary>
         /// Extracts product skus.
         /// </summary>
         /// <returns>The product skus.</returns>
