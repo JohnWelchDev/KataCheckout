@@ -38,6 +38,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
         protected OfferCondition GetCondition(ConditionNest conditionNest)
         {
             OfferCondition condition = new OfferCondition();
+            condition.RelationCode = conditionNest.RelationCode;
 
             // populate condition units.
             foreach ((string, string, int) item in conditionNest.Units)

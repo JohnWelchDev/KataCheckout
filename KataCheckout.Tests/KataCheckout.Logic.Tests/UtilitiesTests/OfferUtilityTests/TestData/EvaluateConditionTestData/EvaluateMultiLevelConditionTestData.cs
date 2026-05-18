@@ -51,7 +51,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.Eva
             OfferCondition fiveChildTwo = this.GetCondition(new ConditionNest { Units = [("C", ">", 1), ("D", "<=", 3)], RelationCode = RelationCodes.OR, Invert = false });
             fiveCondition.ChildOfferConditions.AddRange([fiveChildOne, fiveChildTwo]);
             Dictionary<string, CartLineItem> fiveLineItems = this.GetCartLines([("B", 3), ("A", 2), ("C", 2), ("D", 4)]);
-            bool fiveResult = true;
+            bool fiveResult = false;
             string fiveName = "No conditions two child groups - AND - one group pass one group fail";
 
             OfferCondition sixCondition = this.GetCondition(new ConditionNest { RelationCode = RelationCodes.AND, Invert = false });

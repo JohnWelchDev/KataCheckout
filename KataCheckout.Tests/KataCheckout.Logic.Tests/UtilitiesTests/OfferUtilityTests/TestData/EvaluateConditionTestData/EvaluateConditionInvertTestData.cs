@@ -26,7 +26,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData.Eva
 
             OfferCondition twoCondition = this.GetCondition(new ConditionNest { Units = [("A", "=", 2)], Invert = true });
             Dictionary<string, CartLineItem> twoLineItems = this.GetCartLines([("A", 1)]);
-            bool twoResult = false;
+            bool twoResult = true;
             string twoName = "Invert - One item - equal to fail";
 
             OfferCondition threeCondition = this.GetCondition(new ConditionNest { Units = [("A", "=", 2), ("B", "=", 1)], RelationCode = RelationCodes.AND, Invert = true });

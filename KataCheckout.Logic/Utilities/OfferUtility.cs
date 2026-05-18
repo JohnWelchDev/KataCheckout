@@ -96,13 +96,19 @@ namespace KataCheckout.Logic.Utilities
 
         public static bool EvaluateCondition(OfferCondition condition, Dictionary<string, CartLineItem> cartLines)
         {
-            bool match = false;
+            bool anyMatch = false;
+            bool allMatch = true;
+
+            // check if all units must evaluate true in order for condition to pass.
+            bool allRequired = condition.RelationCode == RelationCodes.AND;
+
+            bool unitsChecked = false;
 
             // check unit conditions set.
             if (condition.UnitConditions != null && condition.UnitConditions.Count > 0)
             {
-                // check if all units must evaluate true in order for condition to pass.
-                bool allRequired = condition.RelationCode == "&&";
+                // flag units as having been checked.
+                unitsChecked = true;
 
                 // loop through the condition units.
                 foreach (ProductConditionUnit unit in condition.UnitConditions)
@@ -115,23 +121,89 @@ namespace KataCheckout.Logic.Utilities
                         {
                             // get the cart line item.
                             CartLineItem cartLineItem = cartLines[unit.SKU];
+
+                            // evaluate the condition unit.
+                            bool unitResult = OperatorUtility.Evaluate(cartLineItem.NumUnits, unit.Operator, unit.NumUnits);
+
+                            // update matchn tracking variables.
+                            anyMatch |= unitResult;
+                            allMatch &= unitResult;
+
+                            // check if all are required and a unit failed.
+                            if (allRequired && !allMatch)
+                            {
+                                // stop searching, already failed.
+                                break;
+                            }
                         }
-                        else if (allRequired)
+                        else
                         {
                             // no cart line found for product.
-                            break;
+                            allMatch = false;
+
+                            // check if all required to pass.
+                            if (allRequired)
+                            {
+                                break;
+                            }
                         }
                     }
-                    else if (allRequired)
+                    else
                     {
                         // unable to match condition as can't identify product.
-                        // all required to pass so evaluate condition fails.
-                        break;
+                        allMatch = false;
+
+                        // check if all required to pass.
+                        if (allRequired)
+                        {
+                            // all required to pass so evaluate condition fails.
+                            break;
+                        }
                     }
                 }
             }
 
-            return match;
+            // matched so far if all are matched or one or more matches found and not all are required to pass.
+            bool pass = allMatch || (!allRequired && anyMatch);
+
+            // check if can continue to evaluate child conditions, scenarios being:
+            // no units checked - only child conditions set
+            // all matched - still potential match
+            // only one match required and at least one found - still potential match.
+            if (pass || !unitsChecked)
+            {
+                // check the child offer conditions are populated.
+                if (condition.ChildOfferConditions != null && condition.ChildOfferConditions.Count > 0)
+                {
+                    // loop through the child offers.
+                    foreach (OfferCondition childCondition in condition.ChildOfferConditions)
+                    {
+                        // evaluate child condition.
+                        bool childPass = EvaluateCondition(childCondition, cartLines);
+
+                        anyMatch |= childPass;
+                        allMatch &= childPass;
+
+                        // check if child condition passed.
+                        if (!childPass && allRequired)
+                        {
+                            // we know the overall evaluation will now fail, stop searching.
+                            break;
+                        }
+                    }
+
+                    pass &= allMatch || (!allRequired && anyMatch);
+                }
+            }
+
+            // check if condition is set to invert it's overall evaluation.
+            if (condition.InvertEvaluation)
+            {
+                // invert result.
+                pass = !pass;
+            }
+
+            return pass;
         }
     }
 }
