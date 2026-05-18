@@ -103,7 +103,7 @@ namespace KataCheckout.Logic.Utilities
                         // check cart line exists for product.
                         if (cartLines.ContainsKey(unit.SKU))
                         {
-
+                            
                         }
                         else if (allRequired)
                         {
