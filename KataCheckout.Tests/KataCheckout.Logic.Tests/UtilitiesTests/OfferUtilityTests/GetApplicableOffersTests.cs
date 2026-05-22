@@ -28,7 +28,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests
 
         public void ExecuteTest(IEnumerable<BaseProduct> products, IEnumerable<SpecialOffer> specialOffers, IEnumerable<SpecialOffer> expectedResults)
         {
-            List<SpecialOffer> results = OfferUtility.GetApplicableOffers(specialOffers, products);
+            List<SpecialOffer> results = OfferUtility.GetPotentialApplicableOffers(specialOffers, products);
 
             // check right number of results returned.
             Assert.That(results.Count(), Is.EqualTo(expectedResults.Count()), "Incorrect number of results returned");

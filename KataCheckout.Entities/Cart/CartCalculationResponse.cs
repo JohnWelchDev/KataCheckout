@@ -9,6 +9,11 @@ namespace KataCheckout.Entities.Cart
     /// </summary>
     public class CartCalculationResponse
     {
+        public CartCalculationResponse()
+        {
+            this.DiscountLines = new List<CartCalculationDiscountLine>();
+        }
+
         /// <summary>
         /// Gets or sets a value indicating whether or not the operation was successful.
         /// </summary>
@@ -18,6 +23,11 @@ namespace KataCheckout.Entities.Cart
         /// Gets or sets the error message.
         /// </summary>
         public string? ErrorMessage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the discount lines.
+        /// </summary>
+        public List<CartCalculationDiscountLine> DiscountLines { get; init; }
 
         /// <summary>
         /// Gets or sets the total with offers applied.

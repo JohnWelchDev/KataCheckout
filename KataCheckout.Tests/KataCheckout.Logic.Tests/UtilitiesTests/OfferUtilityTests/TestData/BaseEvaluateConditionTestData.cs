@@ -15,19 +15,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
     {
         protected Dictionary<string, CartLineItem> GetCartLines(List<(string, int)> lines)
         {
-            Dictionary<string, CartLineItem> dicLineItems = new Dictionary<string, CartLineItem>();
-
-            // loop through line item data.
-            foreach ((string, int) line in lines)
-            {
-                // create line item.
-                CartLineItem lineItem = new CartLineItem(new Product { SKU = line.Item1, UnitPrice = 5.99M, }, line.Item2);
-
-                // add to unique line items.
-                dicLineItems.Add(line.Item1, lineItem);
-            }
-
-            return dicLineItems;
+            return OfferTestUtility.GetCartLines(lines);
         }
 
         /// <summary>
@@ -37,28 +25,7 @@ namespace KataCheckout.Logic.Tests.UtilitiesTests.OfferUtilityTests.TestData
         /// <returns>The condition.</returns>
         protected OfferCondition GetCondition(ConditionNest conditionNest)
         {
-            OfferCondition condition = new OfferCondition();
-            condition.RelationCode = conditionNest.RelationCode;
-
-            // populate condition units.
-            foreach ((string, string, int) item in conditionNest.Units)
-            {
-                condition.UnitConditions.Add(new ProductConditionUnit { SKU = item.Item1, Operator = item.Item2, NumUnits = item.Item3 });
-            }
-
-            condition.InvertEvaluation = conditionNest.Invert;
-
-            // check if child nests populated.
-            if (conditionNest.ChildNests != null && conditionNest.ChildNests.Count > 0)
-            {
-                // loop through child nests.
-                foreach (ConditionNest childNest in conditionNest.ChildNests)
-                {
-                    condition.ChildOfferConditions.Add(this.GetCondition(childNest));
-                }
-            }
-
-            return condition;
+            return OfferTestUtility.GetCondition(conditionNest);
         }
     }
 }

@@ -7,6 +7,7 @@
     <Project Path="KataCheckout.Interfaces/KataCheckout.Interfaces.csproj" Id="23bf1812-11e1-4dd0-8a6e-f8d80f62fa1e" />
   </Folder>
   <Folder Name="/Logic/">
+    <Project Path="KataCheckout.Common/KataCheckout.Common.csproj" Id="254e463e-13d5-4968-94bc-b779448a2b5e" />
     <Project Path="KataCheckout.Logic/KataCheckout.Logic.csproj" Id="b2c0cc0f-0516-409a-be54-7525c4ecf6da" />
   </Folder>
   <Folder Name="/Tests/">

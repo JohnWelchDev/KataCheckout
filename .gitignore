@@ -13,3 +13,6 @@ KataCheckout.Tests/KataCheckout.Logic.Tests/bin/
 KataCheckout.Tests/KataCheckout.Logic.Tests/obj/
 KataCheckout.Tests/KataCheckout.Tests.Common/bin/
 KataCheckout.Tests/KataCheckout.Tests.Common/obj/
+KataCheckout.Common/bin/
+KataCheckout.Common/obj/
+TestResults/

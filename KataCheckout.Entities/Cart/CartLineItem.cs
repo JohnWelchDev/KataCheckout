@@ -17,6 +17,7 @@ namespace KataCheckout.Entities.Cart
         {
             this.Product = product;
             this.NumUnits = numUnits;
+            this.UnitPrice = product.UnitPrice;
         }
 
         /// <summary>
@@ -28,6 +29,11 @@ namespace KataCheckout.Entities.Cart
         /// Gets or sets the number of units.
         /// </summary>
         public int NumUnits { get; set; }
+
+        /// <summary>
+        /// Gets or sets the unit price.
+        /// </summary>
+        public decimal UnitPrice { get; set; }
 
         /// <summary>
         /// Clones object.

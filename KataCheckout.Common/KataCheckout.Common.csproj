@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\KataCheckout.Common\KataCheckout.Common.csproj" />
-    <ProjectReference Include="..\KataCheckout.Entities\KataCheckout.Entities.csproj" />
-  </ItemGroup>
-
 </Project>

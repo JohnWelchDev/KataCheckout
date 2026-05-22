@@ -2,6 +2,7 @@
 using KataCheckout.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace KataCheckout.Entities.Offers
@@ -12,12 +13,18 @@ namespace KataCheckout.Entities.Offers
     public class SpecialOffer : ISkuExtractable
     {
         /// <summary>
+        /// Gets or sets the execution rules.
+        /// </summary>
+        private List<OfferExecutionRule> executionRules;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SpecialOffer" /> class.
         /// </summary>
         public SpecialOffer()
         {
             //this.Conditions = new List<OfferCondition>();
             this.Condition = new OfferCondition();
+            this.executionRules = new List<OfferExecutionRule>();
         }
 
         /// <summary>
@@ -26,14 +33,29 @@ namespace KataCheckout.Entities.Offers
         public int SpecialOfferID { get; set; }
 
         /// <summary>
+        /// Gets or sets the offer mode.
+        /// </summary>
+        public OfferExecutionMode OfferMode { get; set; }
+
+        /// <summary>
         /// Gets or sets the condition to be met for the offer to apply.
         /// </summary>
         public OfferCondition Condition { get; init; }
 
         /// <summary>
+        /// Gets the execution rules.
+        /// </summary>
+        public IEnumerable<OfferExecutionRule> ExecutionRules { get { return this.executionRules; } private set { this.executionRules = new List<OfferExecutionRule>(value); } }
+
+        /// <summary>
         /// Gets or sets the number of times an offer can apply within a single checkout (null for unlimited).
         /// </summary>
         public int? LimitPerCheckout { get; set; }
+
+        /// <summary>
+        /// Gets or sets the discount amount.
+        /// </summary>
+        public decimal DiscountAmount { get; set; }
 
         /// <summary>
         /// Extracts product skus.
@@ -57,6 +79,32 @@ namespace KataCheckout.Entities.Offers
             }
 
             return results;
+        }
+
+        /// <summary>
+        /// Add execution rule to offer.
+        /// </summary>
+        /// <param name="sku">The sku.</param>
+        /// <param name="numUnitLimit">The number of units limit.</param>
+        public void AddExecutionRule(string sku, int numUnitLimit)
+        {
+            OfferExecutionRule rule = new OfferExecutionRule();
+            rule.SKU = sku;
+            rule.NumUnitLimit = numUnitLimit;
+
+            this.AddExecutionRule(rule);
+        }
+
+        /// <summary>
+        /// Adds execution rule to offer.
+        /// </summary>
+        /// <param name="rule">The rule.</param>
+        public void AddExecutionRule(OfferExecutionRule rule)
+        {
+            if (rule != null)
+            {
+                this.executionRules.Add(rule);
+            }
         }
     }
 }
