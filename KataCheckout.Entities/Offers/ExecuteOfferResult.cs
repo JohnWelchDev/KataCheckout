@@ -22,7 +22,7 @@ namespace KataCheckout.Entities.Offers
         /// <summary>
         /// Gets or sets the error message.
         /// </summary>
-        public string ErrorMessage { get; set; }
+        public string? ErrorMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the discount amount applied.

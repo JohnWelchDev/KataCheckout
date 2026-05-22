@@ -16,3 +16,5 @@ KataCheckout.Tests/KataCheckout.Tests.Common/obj/
 KataCheckout.Common/bin/
 KataCheckout.Common/obj/
 TestResults/
+KataCheckout.Tests/KataCheckout.Common.Tests/bin/
+KataCheckout.Tests/KataCheckout.Common.Tests/obj/

@@ -64,7 +64,7 @@ namespace KataCheckout.Entities.Tests.OfferTests.TestData
             {
                 ProductConditionUnit conditionUnit = new ProductConditionUnit();
                 conditionUnit.SKU = sku;
-                conditionUnit.Operator = OperatorCodes.Equals;
+                conditionUnit.Operator = OperatorCodes.EqualTo;
                 conditionUnit.NumUnits = 2;
 
                 offer.Condition.UnitConditions.Add(conditionUnit);

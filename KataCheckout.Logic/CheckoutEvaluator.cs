@@ -95,44 +95,6 @@ namespace KataCheckout.Logic
 
                                     string? error = null;
 
-                                    /*
-                                    Dictionary<string, (CartLineItem, OfferExecutionRule)> dicLineItemRuleMappings = new Dictionary<string, (CartLineItem, OfferExecutionRule)>();
-                                    Dictionary<string, CartLineItem> dicTargetExecutionItems = new Dictionary<string, CartLineItem>();
-
-                                    // loop through the execution rules.
-                                    foreach (OfferExecutionRule rule in offer.ExecutionRules)
-                                    {
-                                        // check the sku can be found in cart line items.
-                                        if (copyItems.ContainsKey(rule.SKU))
-                                        {
-                                            // check if mapping exists for sku.
-                                            if (!dicLineItemRuleMappings.ContainsKey(rule.SKU))
-                                            {
-                                                // add mapping for sku connecting line item to execution rule.
-                                                CartLineItem lineItem = copyItems[rule.SKU];
-                                                dicLineItemRuleMappings.Add(rule.SKU, (lineItem, rule));
-
-                                                // add to dicitonary of items to be targeted.
-                                                dicTargetExecutionItems.Add(rule.SKU, lineItem);
-                                            }
-                                            else
-                                            {
-                                                // duplicate sku in rule list.
-                                                error = $"SKU \"{rule.SKU}\" appears in offer execution rule list more than once";
-
-                                                break;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            // sku not found in line items.
-                                            error = $"execution rule could not be executed because sku \"{rule.SKU}\" was not found in cart line items";
-
-                                            break;
-                                        }
-                                    }
-                                    */
-
                                     // check can continue with offer execution.
                                     if (string.IsNullOrWhiteSpace(error))
                                     {
@@ -203,38 +165,6 @@ namespace KataCheckout.Logic
                                             offerLogger.Log(offer, "No result returned when attempting to execute offer");
                                             stopCheckingOffer = true;
                                         }
-
-                                        /*
-                                        // loop through rule mappings.
-                                        foreach (string sku in dicLineItemRuleMappings.Keys)
-                                        {
-                                            // get mapping.
-                                            (CartLineItem, OfferExecutionRule) mapping = dicLineItemRuleMappings[sku];
-
-                                            // check if sku has a number of units limit.
-                                            if (mapping.Item2.NumUnitLimit.HasValue)
-                                            {
-                                                // use rule limit if num units has hit or exceeded the cap, otherwise use number of units from line item.
-                                                int numAffected = mapping.Item1.NumUnits >= mapping.Item2.NumUnitLimit.Value ? mapping.Item2.NumUnitLimit.Value : mapping.Item1.NumUnits;
-
-                                                // copy affected item and set the number of items set.
-                                                CartLineItem affectedLineItem = mapping.Item1.Clone();
-                                                affectedLineItem.NumUnits = numAffected;
-                                                dicAffectedItems.Add(sku, affectedLineItem);
-
-                                                mapping.Item1.NumUnits -= numAffected;
-                                            }
-                                            else
-                                            {
-                                                // no limit specified, all items affected.
-                                                CartLineItem affected = mapping.Item1.Clone();
-                                                affected.NumUnits = mapping.Item1.NumUnits;
-
-                                                // in a loop of unique keys so check shouldn't be required here.
-                                                dicAffectedItems.Add(sku, affected);
-                                            }
-                                        }
-                                        */
                                     }
                                     else
                                     {
@@ -300,54 +230,6 @@ namespace KataCheckout.Logic
             }
 
             return response;
-        }
-
-
-        public void ApplySpecialOffers(Dictionary<string, CartLineItem> lineItems, IEnumerable<SpecialOffer> specialOffers)
-        {
-            Dictionary<string, CartLineItem> copyItems = new Dictionary<string, CartLineItem>();
-
-            // loop through skus.
-            foreach (string sku in lineItems.Keys)
-            {
-                // copy into dicitonary.
-                copyItems.Add(sku, lineItems[sku].Clone());
-            }
-
-            Dictionary<int, int> dicOfferAppliedCount = new Dictionary<int, int>();
-
-            // loop through offers to apply.
-            foreach (SpecialOffer offer in specialOffers)
-            {
-                // check the limit per checkout.
-                if (offer.LimitPerCheckout.HasValue && offer.LimitPerCheckout.Value > 0)
-                {
-                    // check if there is an offer count.
-                    if (dicOfferAppliedCount.ContainsKey(offer.SpecialOfferID))
-                    {
-                        // check if limit has been reached.
-                        if (dicOfferAppliedCount[offer.SpecialOfferID] >= offer.LimitPerCheckout.Value)
-                        {
-                            continue;
-                        }
-                    }
-                }
-
-                // apply the offer.
-                ExecuteOfferResult result = OfferUtility.ExecuteOffer(copyItems, offer);
-
-                // check if offer applied count exists.
-                if (dicOfferAppliedCount.ContainsKey(offer.SpecialOfferID))
-                {
-                    // increment the count.
-                    dicOfferAppliedCount[offer.SpecialOfferID]++;
-                }
-                else
-                {
-                    // add entry.
-                    dicOfferAppliedCount.Add(offer.SpecialOfferID, 1);
-                }
-            }
         }
     }
 }

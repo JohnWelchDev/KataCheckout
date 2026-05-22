@@ -105,7 +105,7 @@ namespace KataCheckout.Tests.Common.Offers
         public static OfferCondition GetCondition(ConditionNest conditionNest)
         {
             OfferCondition condition = new OfferCondition();
-            condition.RelationCode = conditionNest.RelationCode;
+            condition.RelationCode = conditionNest.RelationCode ?? RelationCodes.AND;
 
             // populate condition units.
             foreach ((string, string, int) item in conditionNest.Units)

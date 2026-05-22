@@ -37,7 +37,7 @@ namespace KataCheckout.Tests.Common.Products
         {
             this.SKUs.ForEach(x =>
             {
-                condition.UnitConditions.Add(new ProductConditionUnit { SKU = x, Operator = OperatorCodes.Equals, NumUnits = 2 });
+                condition.UnitConditions.Add(new ProductConditionUnit { SKU = x, Operator = OperatorCodes.EqualTo, NumUnits = 2 });
             });
 
             // check child levels present.

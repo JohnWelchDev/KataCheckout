@@ -12,7 +12,12 @@ namespace KataCheckout.Entities.Offers
         /// <summary>
         /// The operator code for equal to.
         /// </summary>
-        public const string Equals = "=";
+        public const string EqualTo = "=";
+
+        /// <summary>
+        /// The operator code for not equal to.
+        /// </summary>
+        public const string NotEqualTo = "!=";
 
         /// <summary>
         /// The operator code for less than.

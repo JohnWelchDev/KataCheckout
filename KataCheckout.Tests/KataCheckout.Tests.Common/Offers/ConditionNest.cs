@@ -28,7 +28,7 @@ namespace KataCheckout.Tests.Common.Offers
         /// <summary>
         /// Gets or sets the relation code.
         /// </summary>
-        public string RelationCode { get; set; }
+        public string? RelationCode { get; set; }
 
         /// <summary>
         /// Gets or sets the child nests.

@@ -294,29 +294,33 @@ namespace KataCheckout.Logic.Utilities
                         // loop through execution rules.
                         foreach (OfferExecutionRule rule in offer.ExecutionRules)
                         {
-                            // check product can be found in cart lines.
-                            if (copyItems.ContainsKey(rule.SKU))
+                            // check sku is set.
+                            if (!string.IsNullOrEmpty(rule.SKU))
                             {
-                                CartLineItem targetItem = copyItems[rule.SKU];
-
-                                // work out the number of units to be affected by offer.
-                                // if no limit set or limit is above number of line item units, use line item units,
-                                // otherwise use the rule limit as number of line item units exceeds it.
-                                int affectedUnitCount = !rule.NumUnitLimit.HasValue || rule.NumUnitLimit.Value > targetItem.NumUnits ? targetItem.NumUnits : rule.NumUnitLimit.Value;
-
-                                // clone item to create affected item entry.
-                                CartLineItem affectedItem = targetItem.Clone();
-                                affectedItem.NumUnits = affectedUnitCount;
-                                offerAffectedItems.Add(affectedItem);
-
-                                // set the number of units to remain unaffected by offer.
-                                targetItem.NumUnits -= affectedUnitCount;
-
-                                // check the number of units remaining.
-                                if (targetItem.NumUnits <= 0)
+                                // check product can be found in cart lines.
+                                if (copyItems.ContainsKey(rule.SKU))
                                 {
-                                    // remove item from collection.
-                                    copyItems.Remove(rule.SKU);
+                                    CartLineItem targetItem = copyItems[rule.SKU];
+
+                                    // work out the number of units to be affected by offer.
+                                    // if no limit set or limit is above number of line item units, use line item units,
+                                    // otherwise use the rule limit as number of line item units exceeds it.
+                                    int affectedUnitCount = !rule.NumUnitLimit.HasValue || rule.NumUnitLimit.Value > targetItem.NumUnits ? targetItem.NumUnits : rule.NumUnitLimit.Value;
+
+                                    // clone item to create affected item entry.
+                                    CartLineItem affectedItem = targetItem.Clone();
+                                    affectedItem.NumUnits = affectedUnitCount;
+                                    offerAffectedItems.Add(affectedItem);
+
+                                    // set the number of units to remain unaffected by offer.
+                                    targetItem.NumUnits -= affectedUnitCount;
+
+                                    // check the number of units remaining.
+                                    if (targetItem.NumUnits <= 0)
+                                    {
+                                        // remove item from collection.
+                                        copyItems.Remove(rule.SKU);
+                                    }
                                 }
                             }
                         }

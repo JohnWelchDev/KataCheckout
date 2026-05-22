@@ -12,7 +12,7 @@ namespace KataCheckout.Entities.Offers
         /// <summary>
         /// Gets or sets the product sku.
         /// </summary>
-        public string SKU { get; set; }
+        public string? SKU { get; set; }
 
         /// <summary>
         /// Gets or sets the number of units to ringfence for the offer.
